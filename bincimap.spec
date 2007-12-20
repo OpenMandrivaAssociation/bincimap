@@ -31,6 +31,7 @@ Requires(preun): xinetd
 Requires:	checkpassword-pam
 Requires:	xinetd
 Requires:	openssl
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 Binc IMAP is an IMAP server, written in C++ for the Linux platform. It
