@@ -39,7 +39,7 @@ supports Dan J. Bernstein's Maildir format and checkpassword
 authentication.
 
 As an alternative to existing similar IMAP servers, Binc IMAP strives
-to be
+to be:
 
 * very easy to install and use, but robust, stable and secure
 * absolutely compliant with the IMAP4rev1 protocol
