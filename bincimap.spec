@@ -61,7 +61,7 @@ to be:
     --bindir=%{_sbindir} \
     --sbindir=%{_sbindir} \
     --sysconfdir=%{_sysconfdir} \
-    --localstatedir=%{_localstatedir}/bincimap-chroot
+    --localstatedir=%{_localstatedir}/lib/bincimap-chroot
 
 %make
 
@@ -76,7 +76,7 @@ install -d %{buildroot}%{_sysconfdir}/xinetd.d
 install -d %{buildroot}%{_bindir}
 install -d %{buildroot}%{_sbindir}
 install -d %{buildroot}%{_mandir}/man{1,5}
-install -d %{buildroot}%{_localstatedir}/bincimap-chroot
+install -d %{buildroot}%{_localstatedir}/lib/bincimap-chroot
 
 install -m755 src/bincimapd %{buildroot}%{_sbindir}/
 install -m755 src/bincimap-up %{buildroot}%{_sbindir}/
@@ -101,7 +101,7 @@ find service -type f -name "down" | xargs rm -f
 find service -type f -name "*.in" | xargs rm -f
 
 %pre
-%_pre_useradd bincimap %{_localstatedir}/bincimap-chroot /bin/false
+%_pre_useradd bincimap %{_localstatedir}/lib/bincimap-chroot /bin/false
 
 %post
 if [ $1 = "1" ]; then 
@@ -135,6 +135,6 @@ service xinetd condrestart
 %attr(0644,root,root) %{_mandir}/man1/bincimapd.1*
 %attr(0644,root,root) %{_mandir}/man1/bincimap-up.1*
 %attr(0644,root,root) %{_mandir}/man5/bincimap.conf.5*
-%dir %attr(0755,bincimap,bincimap) %{_localstatedir}/bincimap-chroot
+%dir %attr(0755,bincimap,bincimap) %{_localstatedir}/lib/bincimap-chroot
 
 
