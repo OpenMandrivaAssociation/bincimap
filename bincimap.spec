@@ -1,7 +1,7 @@
 Summary:	Binc IMAP server
 Name:		bincimap
 Version:	1.2.13
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	GPL
 Group:		System/Servers
 URL:		http://www.bincimap.org/
