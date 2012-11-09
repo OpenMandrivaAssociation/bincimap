@@ -1,0 +1,60 @@
+diff -Naur bincimap-1.2.0/conf/bincimap.conf.in bincimap-1.2.0.oden/conf/bincimap.conf.in
+--- bincimap-1.2.0/conf/bincimap.conf.in	2003-08-23 14:53:25.000000000 +0200
++++ bincimap-1.2.0.oden/conf/bincimap.conf.in	2003-08-29 13:32:25.000000000 +0200
+@@ -15,7 +15,7 @@
+ 
+ //----------------------------------------------------------------------------
+ Authentication {
+-    allow plain auth in non ssl = "no",            /* allow login or
++    allow plain auth in non ssl = "yes",            /* allow login or
+                                                       authenticate
+                                                       when not in
+                                                       SSL/TLS mode */
+@@ -33,9 +33,9 @@
+ 
+ //----------------------------------------------------------------------------
+ Security {
+-    jail path = "@prefix@/bin",
+-    jail user = "nobody",
+-    jail group = "nobody"
++    jail path = "@localstatedir@",
++    jail user = "bincimap",
++    jail group = "bincimap"
+ }
+ 
+ //----------------------------------------------------------------------------
+@@ -100,7 +100,7 @@
+ 
+ //----------------------------------------------------------------------------
+ SSL {
+-    pem file = "@sysconfdir@/bincimap.pem",        /* private key and
++    pem file = "@sysconfdir@/ssl/bincimap/bincimap.pem",  /* private key and
+                                                       certificate
+                                                       chain PEM file
+                                                       name */
+diff -Naur bincimap-1.2.0/conf/xinetd-bincimap.in bincimap-1.2.0.oden/conf/xinetd-bincimap.in
+--- bincimap-1.2.0/conf/xinetd-bincimap.in	2003-08-18 20:06:05.000000000 +0200
++++ bincimap-1.2.0.oden/conf/xinetd-bincimap.in	2003-08-29 13:33:33.000000000 +0200
+@@ -20,7 +20,7 @@
+ 	user		= root
+ 	group		= root
+ 	instances	= UNLIMITED
+-	server		= @prefix@/bin/bincimap-up
+-	server_args	= --conf=@sysconfdir@/bincimap.conf --logtype=syslog -- /bin/checkpassword @prefix@/bin/bincimapd
++	server		= @sbindir@/bincimap-up
++	server_args	= --conf=@sysconfdir@/bincimap.conf --logtype=syslog -- /bin/checkpassword-pam -s checkpassword-pam -- @sbindir@/bincimapd
+ 	log_type	= SYSLOG daemon info
+ }
+diff -Naur bincimap-1.2.0/conf/xinetd-bincimaps.in bincimap-1.2.0.oden/conf/xinetd-bincimaps.in
+--- bincimap-1.2.0/conf/xinetd-bincimaps.in	2003-08-18 20:06:05.000000000 +0200
++++ bincimap-1.2.0.oden/conf/xinetd-bincimaps.in	2003-08-29 13:33:57.000000000 +0200
+@@ -20,7 +20,7 @@
+ 	user		= root
+ 	group		= root
+ 	instances	= UNLIMITED
+-	server		= @prefix@/bin/bincimap-up
+-	server_args	= --ssl --conf=@sysconfdir@/bincimap.conf --logtype=syslog -- /bin/checkpassword @prefix@/bin/bincimapd
++	server		= @sbindir@/bincimap-up
++	server_args	= --ssl --conf=@sysconfdir@/bincimap.conf --logtype=syslog -- /bin/checkpassword-pam -s checkpassword-pam -- @sbindir@/bincimapd
+ 	log_type	= SYSLOG daemon info
+ }

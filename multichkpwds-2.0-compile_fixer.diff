@@ -1,0 +1,18 @@
+--- multichkpwds-2.0/multichkpwds.c	2005-10-17 20:09:12.000000000 +0200
++++ multichkpwds-2.0/multichkpwds.c.oden	2005-10-17 21:11:35.000000000 +0200
+@@ -49,10 +49,13 @@
+  * gcc -o multichkpwds multichkpwds2.c
+  *
+  */
+-#include <signal.h>
+-#include <stdlib.h>
++#include <stdio.h>
+ #include <unistd.h>
++#include <ctype.h>
+ #include <wait.h>
++#include <stdlib.h>
++#include <fcntl.h>
++#include <signal.h>
+ 
+ int main(int argc, char *argv[])
+ {
