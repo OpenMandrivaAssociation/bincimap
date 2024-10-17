@@ -4,7 +4,7 @@ Version:	1.2.13
 Release:	%mkrel 5
 License:	GPL
 Group:		System/Servers
-URL:		http://www.bincimap.org/
+URL:		https://www.bincimap.org/
 Source0:	http://www.bincimap.org/dl/tarballs/1.2/%{name}-%{version}final.tar.bz2
 Source1:	bincimap.cnf.bz2
 Source2:	mkimapdcert.bz2
